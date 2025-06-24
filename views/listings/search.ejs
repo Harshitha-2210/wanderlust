@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate.ejs")%>
+
+ <% if (allListings.length === 0) { %>
+     <div class="text-center my-5">
+        <h2>No listings found for "<%= country %>"</h2>
+        <p>Please try a different country.</p>
+        <a href="/listings" class="btn btn-danger mt-3">Explore All Listings</a>
+     </div>
+   <% } else { %>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <%for(let listing of allListings){%>
+    <a href="/listings/<%= listing._id %>" class="listing-link">
+    <div class="card col listing-card">
+        <img src="<%= listing.image.url %>" class="card-img-top" alt="listing-image" style="height: 20rem;">
+        <div class="card-img-overlay"></div>
+        <div class="card-body">
+          <p class="card-text">
+            <b><%= listing.title %></b><br>
+            &#8377; <%= listing.price.toLocaleString("en-IN") %>/night
+            <i class="tax-info">&nbsp; &nbsp;+18% GST</i>
+          </p>
+        </div>
+    </div>
+    </a>
+    <% } %>
+   </div>
+ <% } %>
+
+ 
